@@ -11,8 +11,6 @@
 #include "pccmd.h"
 
 
-//extern UART_HandleTypeDef huart1;
-
 void pcCmdWriteDisplay(UART_HandleTypeDef *uart, char line1[], char line2[]){
 	char outString[58];
 	sprintf(outString,"*SET,UI,TEXT,%-12s%-12s",line1,line2);
