@@ -22,10 +22,10 @@ void pcCmdWriteDisplay(UART_HandleTypeDef *uart, char line1[], char line2[]);
 //Returns the screen's display to an empty state
 void pcCmdBlankDisplay(UART_HandleTypeDef *uart);
 
-//Enables or disable audio out
+//Enables or disables audio out
 void pcCmdAudioControl(UART_HandleTypeDef *uart, bool status);
 
-//Selects a specifc channel Nr
+//Selects a specific channel Nr
 void pcCmdSetChannelNr(UART_HandleTypeDef *uart, int channelNr);
 
 //Sets the radio's volume to a specific value (0-255)
