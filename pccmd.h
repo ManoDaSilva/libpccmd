@@ -1,8 +1,10 @@
 /*
  * pccmd.h
  *
+ * Implements basic PCCMDV2 commands for use in Micro17
  *  Created on: May 21, 2024
- *      Author: Manoel Casquilho - ON6RF
+ *      Authors: Manoel - ON6RF
+ *				 Wojciech - SP5WWP
  */
 
 #include <string.h>
@@ -15,31 +17,31 @@
 #define PCCMD_EOL "\x03"
 
 //writes screen to the display (left padded), each line is 12 chars max
-void pcCmdWriteDisplay(char line1[], char line2[]);
+void pcCmdWriteDisplay(UART_HandleTypeDef *uart, char line1[], char line2[]);
 
 //Returns the screen's display to an empty state
-void pcCmdBlankDisplay();
+void pcCmdBlankDisplay(UART_HandleTypeDef *uart);
 
 //Enables or disable audio out
-void pcCmdAudioControl(bool status);
+void pcCmdAudioControl(UART_HandleTypeDef *uart, bool status);
 
 //Selects a specifc channel Nr
-void pcCmdSetChannelNr(int channelNr);
+void pcCmdSetChannelNr(UART_HandleTypeDef *uart, int channelNr);
 
 //Sets the radio's volume to a specific value (0-255)
-void pcCmdSetVolume(int volumeVal);
+void pcCmdSetVolume(UART_HandleTypeDef *uart, int volumeVal);
 
 //Set the radio's power level (1 = LOW1, 2 = LOW2, 3 = HIGH)
-void pcCmdSetPower(int powerLevel);
+void pcCmdSetPower(UART_HandleTypeDef *uart, int powerLevel);
 
 //Reads the profile comment line (1 or 2), and puts the result in a char pointer
 //WIP
-int pcCmdGetProfileComment(char* lineContents, int lineNr);
+int pcCmdGetProfileComment(UART_HandleTypeDef *uart, char* lineContents, int lineNr);
 
 //Resets (reboots) the radio
-void pcCmdResetRadio();
+void pcCmdResetRadio(UART_HandleTypeDef *uart);
 
 //Internal function to be modified to each specific's microcontroller/program's needs
-void transmitSerial(char contents[]);
-void receiveSerial(char* rxContents);
+void transmitSerial(UART_HandleTypeDef *uart, char contents[]);
+void receiveSerial(UART_HandleTypeDef *uart, char* rxContents);
 
